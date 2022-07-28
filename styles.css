@@ -71,7 +71,6 @@ a {
 }
 /* Home Page */
 
-
 .main-container {
 	background-color: #f4f4f4;
 }
@@ -81,7 +80,7 @@ a {
 	padding: 0 24px;
 	align-items: center;
 	height: 96px;
-    background-color: #FFF;
+	background-color: #fff;
 }
 .main-user {
 	display: flex;
@@ -89,16 +88,16 @@ a {
 	font-size: 18px;
 }
 
-.main-main {
+.main-home {
 	margin: 24px;
 	background-color: #fff;
-    height: 100%;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
 	display: flex;
 	gap: 40px;
 	border-radius: 5px;
-    padding: 200px 244px;
+	padding: 200px 244px;
 }
 .main-card {
 	width: 250px;
@@ -117,4 +116,113 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+/* New Book */
+.main-newbook {
+	margin: 24px;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	height: 624px;
+	padding: 24px;
+}
+.main-path {
+	display: flex;
+	gap: 8px;
+	align-self: flex-start;
+	text-decoration: none;
+}
+#newBook {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 117px;
+}
+.newBookGrid input,
+.newBookGrid select {
+	border: 1px solid #133052;
+	border-radius: 5px;
+	width: 350px;
+	min-height: 53px;
+	padding: 16px;
+}
+#newBook label {
+	position: absolute;
+	margin: 16px;
+	color: #133052;
+}
+.newBookGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 24px;
+	grid-row-gap: 24px;
+	margin: 32px 48px;
+}
+.newBookGrid1 {
+	grid-area: 1 / 1 / 2 / 2;
+}
+.newBookGrid2 {
+	grid-area: 2 / 1 / 4 / 2;
+}
+.newBookGrid3 {
+	grid-area: 1 / 2 / 2 / 3;
+}
+.newBookGrid4 {
+	grid-area: 2 / 2 / 3 / 3;
+}
+.newBookGrid5 {
+	grid-area: 3 / 2 / 4 / 3;
+}
+#bookSynopsis {
+	height: 129px;
+}
+#bookCover {
+	height: 206px;
+	width: 172px;
+	border: 2px dashed #ffc501;
+	color: transparent;
+}
+.newBookLabelFile {
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.labelFileCenter {
+	display: flex;
+	gap: 8px;
+	color: #ffc501 !important;
+}
+#bookEntry {
+	color: transparent;
+}
+#bookEntry:focus {
+	color: black;
+}
+#bookCover::file-selector-button {
+	display: none;
+}
+.newBookBtn {
+	align-self: flex-end;
+	margin-right: 187px;
+	display: flex;
+	gap: 24px;
+}
+.newBookBtn button {
+	width: 143px;
+	height: 53px;
+	font-size: 16px;
+}
+#newBookCancelBtn {
+	background-color: transparent;
+	border: 1px solid #133052;
+	border-radius: 5px;
+}
+#newBookSaveBtn {
+	background-color: #ffc501;
+	border: 0;
+	border-radius: 5px;
 }
