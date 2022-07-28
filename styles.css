@@ -1,0 +1,71 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+a {
+	color: currentColor;
+}
+
+/* Login page */
+.login-body {
+	background: url(./img/login/emil-widlund-xrbbXIXAWY0-unsplash.png) 50% 82%
+		no-repeat;
+	width: 100vw;
+	height: 100vh;
+}
+.login-bg {
+	background: url(./img/login/Retangulo310.svg);
+	background-color: rgba(52, 58, 64, 0.1);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.login-card {
+	background-color: #fff;
+	width: 433px;
+	height: 446px;
+	opacity: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #70707040;
+	border-radius: 8px;
+	padding: 56px 40px;
+}
+.login-logo {
+	width: 120px;
+	height: 48px;
+	margin-bottom: 56px;
+}
+.login-card form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.login-card input {
+	width: 353px;
+	height: 51px;
+	border-radius: 4px;
+	background-color: #f1f3f5;
+	border: 0;
+	padding: 16px;
+}
+.login-btn {
+	border: 0;
+	border-radius: 4px;
+	background-color: #ffc501;
+	height: 45px;
+	width: 353px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 32px;
+}
+.forget-pass {
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+}
