@@ -86,6 +86,7 @@ a {
 	display: flex;
 	align-items: center;
 	font-size: 18px;
+	cursor: pointer;
 }
 
 .main-home {
@@ -108,7 +109,10 @@ a {
 	gap: 27px;
 	border: 3px solid #f4f4f4;
 	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.3s;
 }
+
 .main-card-icon {
 	width: 250px;
 	height: 150px;
@@ -116,6 +120,15 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border: 0;
+	transition: 0.3s;
+}
+.main-card:hover .main-card-icon {
+	background-color: #ffc501;
+	border-radius: 5px 5px 0 0;
+}
+.main-card:hover {
+	border: 3px solid #ffc501;
 }
 
 /* New Book */
