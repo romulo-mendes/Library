@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Library - Cadastrar novo livro</title>
+		<script src="./newbook.js" defer></script>
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +38,12 @@
 					<label class="labelFileCenter" for="bookCover">
 						<img src="./img/newbook/Caminho 261.svg" alt="icon add" /> Capa</label
 					>
-					<input type="file" name="bookCover" id="bookCover" />
+					<input
+						type="file"
+						name="bookCover"
+						id="bookCover"
+						src="./assets/livro04.png"
+					/>
 				</div>
 				<div class="newBookGrid">
 					<div class="newBookGrid1">
@@ -54,7 +60,18 @@
 					</div>
 					<div class="newBookGrid4">
 						<label for="bookGenre">Gênero</label>
-						<select name="bookGenre" id="bookGenre"></select>
+						<select name="bookGenre" id="bookGenre">
+							<option value=""></option>
+							<option value="Fantasia">Fantasia</option>
+							<option value="Ação e Aventura">Ação e Aventura</option>
+							<option value="Horror">Horror</option>
+							<option value="Romance">Romance</option>
+							<option value="Autoajuda">Autoajuda</option>
+							<option value="Ficção Cientifica">Ficção Cientifica</option>
+							<option value="Historia">Historia</option>
+							<option value="Finanças">Finanças</option>
+							<option value="Web Marketing">Web Marketing</option>
+						</select>
 					</div>
 					<div class="newBookGrid5">
 						<label for="bookEntry">Data de entrada</label>
@@ -63,7 +80,9 @@
 				</div>
 			</form>
 			<div class="newBookBtn">
-				<button type="button" id="newBookCancelBtn">CANCELAR</button>
+				<button type="button" id="newBookCancelBtn" onclick="newBookCancelBtn()">
+					CANCELAR
+				</button>
 				<button type="submit" form="newBook" id="newBookSaveBtn">SALVAR</button>
 			</div>
 		</div>
