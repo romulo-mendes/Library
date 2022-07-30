@@ -22,7 +22,7 @@
 				<img src="./img/home/Arrow.svg" alt="icon arrow down" />
 			</div>
 		</nav>
-		<div class="main-newbook">
+		<div class="main-library">
 			<a href="./home.html" class="main-path"
 				><div>
 					<img
@@ -32,6 +32,36 @@
 				</div>
 				<p>Home <strong>/ Biblioteca</strong></p>
 			</a>
+			<div class="main-library-center">
+				<div class="main-library-search">
+					<form action="#" method="post">
+						<div class="inputsearch-btn">
+							<input
+								type="search"
+								name="searchBook"
+								id="searchBook"
+								placeholder="Pesquisar livro..."
+							/>
+							<button type="submit" class="searchBookBtn">Buscar</button>
+						</div>
+						<select name="FilterGenre" id="FilterGenre">
+							<option value="">Filtrar</option>
+							<option value="Fantasia">Fantasia</option>
+							<option value="Ação e Aventura">Ação e Aventura</option>
+							<option value="Horror">Horror</option>
+							<option value="Romance">Romance</option>
+							<option value="Autoajuda">Autoajuda</option>
+							<option value="Ficção Cientifica">Ficção Cientifica</option>
+							<option value="Historia">Historia</option>
+							<option value="Finanças">Finanças</option>
+							<option value="Web Marketing">Web Marketing</option>
+						</select>
+					</form>
+				</div>
+				<div class="main-library-cards">
+					<div class="book-card"></div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

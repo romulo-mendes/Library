@@ -1,6 +1,5 @@
 var allData = JSON.parse(localStorage.getItem("allData"));
 var $newBook = document.getElementById("newBook");
-console.log(allData);
 
 $newBook.addEventListener("submit", (e) => {
 	e.preventDefault();
@@ -26,7 +25,7 @@ $newBook.addEventListener("submit", (e) => {
 			genre: $bookGenre.value,
 			rentHistory: [],
 			status: [{ description: "", isActive: true }],
-			image: $bookCover.value,
+			image: $bookCover.files,
 			synopsis: $bookSynopsis.value,
 			systemEntryDate: $bookEntry.value,
 			tittle: $bookTitle.value,
@@ -40,4 +39,18 @@ $newBook.addEventListener("submit", (e) => {
 
 function newBookCancelBtn() {
 	window.location.assign("./home.html");
+}
+function changePreview(teste) {
+	const file = teste.files[0];
+	var $labelFileCenter = document.querySelector(".labelFileCenter");
+	if (file) {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.addEventListener("loadend", () => {
+			const urlImg = reader.result;
+			teste.style.backgroundImage = "url(" + urlImg + ")";
+			teste.style.backgroundSize = "cover";
+			$labelFileCenter.style.display = "none";
+		});
+	} else $labelFileCenter.style.display = "block";
 }

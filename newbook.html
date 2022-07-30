@@ -38,11 +38,14 @@
 					<label class="labelFileCenter" for="bookCover">
 						<img src="./img/newbook/Caminho 261.svg" alt="icon add" /> Capa</label
 					>
+					<!-- <img class="coverPreview" alt="" /> -->
 					<input
 						type="file"
+						accept="image/*"
 						name="bookCover"
 						id="bookCover"
 						src="./assets/livro04.png"
+						oninput="changePreview(this)"
 					/>
 				</div>
 				<div class="newBookGrid">

@@ -10,7 +10,8 @@ a {
 
 /* Login page */
 .login-body {
-	background: url(./img/login/emil-widlund-xrbbXIXAWY0-unsplash.png) 50% 82% no-repeat;
+	background: url(./img/login/emil-widlund-xrbbXIXAWY0-unsplash.png) 50% 82%
+		no-repeat;
 	width: 100vw;
 	height: 100vh;
 }
@@ -188,6 +189,11 @@ a {
 .newBookGrid5 {
 	grid-area: 3 / 2 / 4 / 3;
 }
+.coverPreview {
+	width: 172px;
+	height: 206px;
+	position: absolute;
+}
 #bookSynopsis {
 	height: 129px;
 }
@@ -196,12 +202,15 @@ a {
 	width: 172px;
 	border: 2px dashed #ffc501;
 	color: transparent;
+	cursor: pointer;
 }
 .newBookLabelFile {
 	font-size: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	cursor: pointer;
 }
 .labelFileCenter {
 	display: flex;
@@ -237,4 +246,43 @@ a {
 	background-color: #ffc501;
 	border: 0;
 	border-radius: 5px;
+}
+
+/* Library */
+.main-library {
+	margin: 24px;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	height: 624px;
+	padding: 24px;
+}
+.main-library-center {
+	margin: 48px 89px;
+	display: flex;
+	justify-content: center;
+	gap: 76px;
+}
+.inputsearch-btn {
+	width: 666px;
+	height: 53px;
+	border: 1px solid #adb5bd;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 8px;
+	padding-left: 16px;
+}
+#searchBook {
+	border: 0;
+	background-color: transparent;
+}
+#searchBook:focus .searchBookBtn {
+	background-color: #ffc501;
+	width: 82px;
+	height: 37px;
+	border-radius: 5px;
+	border: 0;
 }
