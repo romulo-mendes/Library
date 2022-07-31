@@ -1,5 +1,6 @@
 var allData = JSON.parse(localStorage.getItem("allData"));
 var $newBook = document.getElementById("newBook");
+var SaveUrl;
 
 $newBook.addEventListener("submit", (e) => {
 	e.preventDefault();
@@ -25,7 +26,7 @@ $newBook.addEventListener("submit", (e) => {
 			genre: $bookGenre.value,
 			rentHistory: [],
 			status: [{ description: "", isActive: true }],
-			image: $bookCover.files,
+			image: SaveUrl,
 			synopsis: $bookSynopsis.value,
 			systemEntryDate: $bookEntry.value,
 			tittle: $bookTitle.value,
@@ -48,6 +49,7 @@ function changePreview(teste) {
 		reader.readAsDataURL(file);
 		reader.addEventListener("loadend", () => {
 			const urlImg = reader.result;
+			SaveUrl = urlImg;
 			teste.style.backgroundImage = "url(" + urlImg + ")";
 			teste.style.backgroundSize = "cover";
 			$labelFileCenter.style.display = "none";

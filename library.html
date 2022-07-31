@@ -5,11 +5,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Library - Biblioteca</title>
+		<script src="./library.js" defer></script>
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 			rel="stylesheet"
 		/>
 	</head>
@@ -32,10 +33,12 @@
 				</div>
 				<p>Home <strong>/ Biblioteca</strong></p>
 			</a>
-			<div class="main-library-center">
+			<div class="main-library-center" id="booksContainer">
 				<div class="main-library-search">
-					<form action="#" method="post">
-						<div class="inputsearch-btn">
+					<form action="#" method="post" id="librarySearchForm">
+						<label class="inputsearchAndBtn">
+							<img src="./img/library/Caminho 263.svg" alt="ícone de lupa" />
+
 							<input
 								type="search"
 								name="searchBook"
@@ -43,8 +46,8 @@
 								placeholder="Pesquisar livro..."
 							/>
 							<button type="submit" class="searchBookBtn">Buscar</button>
-						</div>
-						<select name="FilterGenre" id="FilterGenre">
+						</label>
+						<select name="filterGenre" id="filterGenre">
 							<option value="">Filtrar</option>
 							<option value="Fantasia">Fantasia</option>
 							<option value="Ação e Aventura">Ação e Aventura</option>
@@ -58,8 +61,43 @@
 						</select>
 					</form>
 				</div>
-				<div class="main-library-cards">
-					<div class="book-card"></div>
+				<div class="main-library-cards"></div>
+			</div>
+		</div>
+		<style>
+			
+		</style>
+		<div id="modalContainer" class="modal-container">
+			<div class="modal-book">
+				<div class="modal-left-side">
+					<img src="" alt="Carregando..." id="modalBookCover" />
+					<button type="button" onclick="lendBook()">
+						<img
+							src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+							alt="Ícone de livro aberto"
+						/>Emprestar
+					</button>
+				</div>
+				<div class="modal-right-side">
+					<div class="modal-txt-info">
+						<h2 id="modalBookTittle">Carregando...</h2>
+						<h3>Sinopse</h3>
+						<p id="modalBookSynopsis">carregando...</p>
+						<h3>Autor</h3>
+						<p id="modalBookAuthor">carregando...</p>
+						<h3>Gênero</h3>
+						<p id="modalBookGenre">carregando...</p>
+						<h3>Data de entrada</h3>
+						<p id="modalBookDate">carregando...</p>
+					</div>
+					<div class="modal-btns">
+						<button type="button" onclick="editBook()">Editar</button>
+						<button type="button" onclick="inactivateBook()">Inativar</button>
+						<button type="button" onclick="historyBook()">Histórico</button>
+					</div>
+				</div>
+				<div class="modal-close" onclick="closeModal()">
+					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
 				</div>
 			</div>
 		</div>
