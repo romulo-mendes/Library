@@ -166,7 +166,6 @@ a {
 	position: absolute;
 	margin: 16px;
 	color: #133052;
-	display: none;
 }
 .newBookGrid {
 	display: grid;
@@ -355,10 +354,15 @@ a {
 	padding: 55px;
 }
 .modal-book {
-	width: 816px;
-	height: 585px;
+	display: none;
+	flex-direction: column;
 	background-color: #fff;
 	border: 1px solid #707070;
+	height: auto;
+}
+.modal-top-side {
+	width: 816px;
+	height: 585px;
 	display: flex;
 	gap: 40px;
 	padding: 70px 40px 40px;
@@ -378,7 +382,7 @@ a {
 	max-width: 272px;
 	max-height: 390px;
 }
-.modal-left-side button {
+.lent-book-btn {
 	background-color: #ffc505;
 	border: 1px solid #adb5bd;
 	padding: 16px 82px;
@@ -387,6 +391,7 @@ a {
 	font-size: 16px;
 	font-weight: 500;
 	border-radius: 5px;
+	cursor: pointer;
 }
 .modal-txt-info {
 	color: #3e4756;
@@ -419,6 +424,54 @@ a {
 	background-color: #fff;
 	border-radius: 5px;
 }
+.modalEditBtn {
+	border: 1px solid #167ce2;
+	color: #167ce2;
+}
+.modalInactivateBtn {
+	border: 1px solid #ed5e5e;
+	color: #ed5e5e;
+}
+.modalHistoryBtn {
+	border: 1px solid #adb5bd;
+	color: #000;
+}
+.modal-rent-history {
+	display: none;
+}
+.lent-book {
+	width: 805px;
+	height: 353px;
+	background-color: #fff;
+	border: 1px solid #707070;
+	padding: 40px;
+	display: none;
+	flex-direction: column;
+	position: relative;
+}
+.lent-book-form {
+	margin-top: 21px;
+	margin-bottom: 40px;
+	display: flex;
+	gap: 23px;
+	flex-wrap: wrap;
+}
+.lent-book-form label {
+	position: absolute;
+	margin: 16px;
+	display: none;
+}
+.lent-book-form input {
+	border: 1px solid #133052;
+	width: 350px;
+	height: 53px;
+	border-radius: 5px;
+	padding: 16px;
+}
+.lent-book button {
+	width: 272px;
+	align-self: flex-end;
+}
 .modal-close {
 	width: 16px;
 	height: 16px;
@@ -430,6 +483,9 @@ a {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+}
+.show-rent-history {
+	display: block;
 }
 .show-modal {
 	display: flex;

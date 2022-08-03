@@ -48,55 +48,119 @@
 							<button type="submit" class="searchBookBtn">Buscar</button>
 						</label>
 						<select name="filterGenre" id="filterGenre">
-							<option value="">Filtrar</option>
-							<option value="Fantasia">Fantasia</option>
-							<option value="Ação e Aventura">Ação e Aventura</option>
-							<option value="Horror">Horror</option>
-							<option value="Romance">Romance</option>
-							<option value="Autoajuda">Autoajuda</option>
-							<option value="Ficção Cientifica">Ficção Cientifica</option>
-							<option value="Historia">Historia</option>
-							<option value="Finanças">Finanças</option>
-							<option value="Web Marketing">Web Marketing</option>
+							<option value="tittle">Titulo</option>
+							<option value="genre">Gênero</option>
+							<option value="author">Autor</option>
+							<option value="systemEntryDate">Data de entrada</option>
 						</select>
 					</form>
 				</div>
 				<div class="main-library-cards"></div>
 			</div>
 		</div>
-		<style>
-			
-		</style>
+		<style></style>
 		<div id="modalContainer" class="modal-container">
 			<div class="modal-book">
-				<div class="modal-left-side">
-					<img src="" alt="Carregando..." id="modalBookCover" />
-					<button type="button" onclick="lendBook()">
-						<img
-							src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
-							alt="Ícone de livro aberto"
-						/>Emprestar
-					</button>
-				</div>
-				<div class="modal-right-side">
-					<div class="modal-txt-info">
-						<h2 id="modalBookTittle">Carregando...</h2>
-						<h3>Sinopse</h3>
-						<p id="modalBookSynopsis">carregando...</p>
-						<h3>Autor</h3>
-						<p id="modalBookAuthor">carregando...</p>
-						<h3>Gênero</h3>
-						<p id="modalBookGenre">carregando...</p>
-						<h3>Data de entrada</h3>
-						<p id="modalBookDate">carregando...</p>
+				<div class="modal-top-side">
+					<div class="modal-left-side">
+						<img src="" alt="Carregando..." id="modalBookCover" />
+						<button
+							class="lent-book-btn"
+							id="lentBookBtn"
+							type="button"
+							id="indexSave"
+							onclick="lendBook(this)"
+						>
+							<img
+								src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+								alt="Ícone de livro aberto"
+							/>Emprestar
+						</button>
 					</div>
-					<div class="modal-btns">
-						<button type="button" onclick="editBook()">Editar</button>
-						<button type="button" onclick="inactivateBook()">Inativar</button>
-						<button type="button" onclick="historyBook()">Histórico</button>
+					<div class="modal-right-side">
+						<div class="modal-txt-info">
+							<h2 id="modalBookTittle">Carregando...</h2>
+							<h3>Sinopse</h3>
+							<p id="modalBookSynopsis">carregando...</p>
+							<h3>Autor</h3>
+							<p id="modalBookAuthor">carregando...</p>
+							<h3>Gênero</h3>
+							<p id="modalBookGenre">carregando...</p>
+							<h3>Data de entrada</h3>
+							<p id="modalBookDate">carregando...</p>
+						</div>
+						<div class="modal-btns">
+							<button type="button" class="modalEditBtn" onclick="editBook()">
+								Editar
+							</button>
+							<button
+								type="button"
+								class="modalInactivateBtn"
+								onclick="inactivateBook()"
+							>
+								Inativar
+							</button>
+							<button type="button" class="modalHistoryBtn" onclick="historyBook()">
+								Histórico
+							</button>
+						</div>
+					</div>
+					<div class="modal-close" onclick="closeModal()">
+						<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
 					</div>
 				</div>
-				<div class="modal-close" onclick="closeModal()">
+				<div class="modal-rent-history" id="modalRentHistory">
+					<h2>Dados do aluno</h2>
+					<table id="tableRentHistory">
+						<thead>
+							<tr>
+								<th>Nome do aluno</th>
+								<th>Turma</th>
+								<th>data da retirada</th>
+								<th>Data da entrega</th>
+							</tr>
+						</thead>
+						<tbody id="tbodyRentHistory"></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="lent-book" id="lentBook">
+				<h3>Informe os dados do aluno antes de continuar</h3>
+				<form action="#" method="post" class="lent-book-form" id="lentBookForm">
+					<div>
+						<label for="studentName">Nome do Aluno</label>
+						<input
+							type="text"
+							placeholder="Nome do Aluno"
+							name="student name"
+							id="studentName"
+						/>
+					</div>
+					<div>
+						<label for="studentClass">Turma</label>
+						<input
+							type="text"
+							placeholder="Turma"
+							name="student class"
+							id="studentClass"
+						/>
+					</div>
+					<div>
+						<label for="withdrawalDate">Data da Retirada</label>
+						<input type="date" name="withdrawal date" id="withdrawalDate" />
+					</div>
+					<div>
+						<label for="deliveryDate">Data da Entrega</label>
+						<input type="date" name="delivery date" id="deliveryDate" />
+					</div>
+				</form>
+				<button type="submit" form="lentBookForm" class="lent-book-btn">
+					<img
+						src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+						alt="Ícone de livro aberto"
+					/>Emprestar
+				</button>
+				<div class="modal-close" onclick="closeModalLent()">
 					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
 				</div>
 			</div>
