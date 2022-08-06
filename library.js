@@ -133,10 +133,36 @@ function checkLentBtn() {
       }
       $lentBookBtn.disabled = true;
       $lentBookBtn.classList.add("lent-book-btn-disabled");
+    } else {
+      $lentBookBtn.disabled = false;
+      $lentBookBtn.classList.remove("lent-book-btn-disabled");
+      $modalRentHistory.classList.remove("show-rent-history");
     }
-  } else {
-    $lentBookBtn.disabled = false;
-    $lentBookBtn.classList.remove("lent-book-btn-disabled");
-    $modalRentHistory.classList.remove("show-rent-history");
   }
+}
+
+function historyBook() {
+  let $modalBook = document.querySelector(".modal-book");
+  let $modalAllRentHistory = document.getElementById("modalAllRentHistory");
+  let bookIndex = $modalBook.dataset.number;
+  let currentBook = booksFiltered[bookIndex].rentHistory;
+  $modalBook.classList.remove("show-modal");
+  $modalAllRentHistory.classList.add("show-rent-history");
+  currentBook.forEach((element) => {
+    let $tbodyModalAllRentHistory = document.getElementById("tbodyModalAllRentHistory");
+    let $tr = document.createElement("tr");
+    for (const property in element) {
+      let $th = document.createElement("th");
+      $th.textContent = element[property];
+      $tr.appendChild($th);
+    }
+    $tbodyModalAllRentHistory.appendChild($tr);
+  });
+}
+
+function closeHistoryBook(){
+  let $modalBook = document.querySelector(".modal-book");
+  let $modalAllRentHistory = document.getElementById("modalAllRentHistory");
+  $modalBook.classList.add("show-modal");
+  $modalAllRentHistory.classList.remove("show-rent-history");
 }

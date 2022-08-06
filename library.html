@@ -58,7 +58,6 @@
         <div class="main-library-cards"></div>
       </div>
     </div>
-    <style></style>
     <div id="modalContainer" class="modal-container">
       <div class="modal-book">
         <div class="modal-top-side">
@@ -110,14 +109,12 @@
               <tr class="tr-thead">
                 <th>Nome do aluno</th>
                 <th>Turma</th>
-                <th>data da retirada</th>
+                <th>Data da retirada</th>
                 <th>Data da entrega</th>
               </tr>
             </thead>
             <tbody id="tbodyRentHistory">
-              <tr class="tr-tbody" id="trRentHistory">
-
-              </tr>
+              <tr class="tr-tbody" id="trRentHistory"></tr>
             </tbody>
           </table>
         </div>
@@ -149,6 +146,29 @@
           />Emprestar
         </button>
         <div class="modal-close" onclick="closeModalLent()">
+          <img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
+        </div>
+      </div>
+      <div class="modal-all-rent-history" id="modalAllRentHistory">
+        <h2>Histórico de empréstimos do livro</h2>
+        <table class="table-all-rent-history">
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>Turma</th>
+              <th>Data da retirada</th>
+              <th>Data da entrega</th>
+            </tr>
+            <tr>
+              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
+              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
+              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
+              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyModalAllRentHistory"></tbody>
+        </table>
+        <div class="modal-close" onclick="closeHistoryBook()">
           <img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
         </div>
       </div>

@@ -62,6 +62,7 @@ a {
   font-size: 16px;
   font-weight: bold;
   margin-top: 32px;
+  cursor: pointer;
 }
 .forget-pass {
   text-align: left;
@@ -231,21 +232,25 @@ a {
   margin-right: 187px;
   display: flex;
   gap: 24px;
+  cursor: pointer;
 }
 .newBookBtn button {
   width: 143px;
   height: 53px;
   font-size: 16px;
+  cursor: pointer;
 }
 #newBookCancelBtn {
   background-color: transparent;
   border: 1px solid #133052;
   border-radius: 5px;
+  cursor: pointer;
 }
 #newBookSaveBtn {
   background-color: #ffc501;
   border: 0;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Library */
@@ -358,6 +363,7 @@ a {
   background-color: #fff;
   border: 1px solid #707070;
   height: auto;
+  max-height: 769px;
 }
 .modal-top-side {
   width: 816px;
@@ -394,6 +400,7 @@ a {
 }
 .lent-book-btn-disabled {
   background-color: #f4f4f4;
+  cursor: default;
 }
 .modal-txt-info {
   color: #3e4756;
@@ -425,36 +432,40 @@ a {
   font-weight: 500;
   background-color: #fff;
   border-radius: 5px;
+  cursor: pointer;
 }
 .modalEditBtn {
   border: 1px solid #167ce2;
   color: #167ce2;
+  cursor: pointer;
 }
 .modalInactivateBtn {
   border: 1px solid #ed5e5e;
   color: #ed5e5e;
+  cursor: pointer;
 }
 .modalHistoryBtn {
   border: 1px solid #adb5bd;
   color: #000;
+  cursor: pointer;
 }
 .modal-rent-history {
   display: none;
   height: 100%;
-  /* background-color: #fff;
-  border: 1px solid #707070; */
+  margin: 0 40px;
 }
 .table-rent-history {
   background-color: #f4f4f4;
-  margin: 16px 40px 40px 40px;
+  margin-top: 16px;
   padding: 16px;
   width: 736px;
+  text-align: left;
 }
 .tr-thead {
   font-size: 16px;
   font-weight: 500;
 }
-.tr-tbody {
+.tr-tbody th {
   font-size: 16px;
   font-weight: 300;
 }
@@ -490,6 +501,24 @@ a {
 .lent-book button {
   width: 272px;
   align-self: flex-end;
+  cursor: pointer;
+}
+.modal-all-rent-history {
+  background-color: #fff;
+  width: 1058px;
+  height: auto;
+  padding: 40px;
+  border: 1px solid #707070;
+  display: none;
+  position: relative;
+}
+.table-all-rent-history {
+  width: 100%;
+  text-align: left;
+}
+.table-all-rent-history tr {
+  height: 41px;
+  border-bottom: 2px solid #cdcdcd;
 }
 .modal-close {
   width: 16px;
