@@ -4,8 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Library - Cadastrar novo livro</title>
-		<script src="./newbook.js" defer></script>
+		<title>Library - Editar livro</title>
+		<script src="./edit.js" defer></script>
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,16 +24,16 @@
 			</div>
 		</nav>
 		<div class="main-newbook">
-			<a href="./home.html" class="main-path"
+			<a href="./library.html" class="main-path"
 				><div>
 					<img
 						src="./img/newbook/chevron_left_FILL0_wght400_GRAD0_opsz48.svg"
 						alt="icon arrow left"
 					/>
 				</div>
-				<p>Home <strong>/ Cadastrar novo livro</strong></p>
+				<p>Biblioteca <strong>/ Editar livro</strong></p>
 			</a>
-			<form action="#" method="post" id="newBook" class="form-book">
+			<form action="#" method="post" id="editBookForm" class="form-book">
 				<div class="newBookLabelFile">
 					<label class="labelFileCenter" for="bookCover">
 						<img src="./img/newbook/Caminho 261.svg" alt="icon add" /> Capa</label
@@ -83,10 +83,10 @@
 				</div>
 			</form>
 			<div class="newBookBtn">
-				<button type="button" id="newBookCancelBtn" onclick="newBookCancelBtn()">
-					CANCELAR
-				</button>
-				<button type="submit" form="newBook" id="newBookSaveBtn">SALVAR</button>
+				<a href="./library.html">
+					<button type="button" id="newBookCancelBtn">CANCELAR</button></a
+				>
+				<button type="submit" form="editBookForm" id="newBookSaveBtn">SALVAR</button>
 			</div>
 		</div>
 	</body>

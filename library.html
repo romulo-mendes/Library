@@ -1,177 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library - Biblioteca</title>
-    <script src="./library.js" defer></script>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="main-container">
-    <nav class="main-nav">
-      <img src="./img/home/Logo.svg" alt="logo library" />
-      <div class="main-user">
-        <img src="./img/home/person_black_24dp (1).svg" alt="icon person" />
-        <p>Usuário</p>
-        <img src="./img/home/Arrow.svg" alt="icon arrow down" />
-      </div>
-    </nav>
-    <div class="main-library">
-      <a href="./home.html" class="main-path"
-        ><div>
-          <img
-            src="./img/newbook/chevron_left_FILL0_wght400_GRAD0_opsz48.svg"
-            alt="icon arrow left"
-          />
-        </div>
-        <p>Home <strong>/ Biblioteca</strong></p>
-      </a>
-      <div class="main-library-center" id="booksContainer">
-        <div class="main-library-search">
-          <form action="#" method="post" id="librarySearchForm">
-            <label class="inputsearchAndBtn">
-              <img src="./img/library/Caminho 263.svg" alt="ícone de lupa" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Library - Biblioteca</title>
+		<script src="./library.js" defer></script>
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="main-container">
+		<nav class="main-nav">
+			<img src="./img/home/Logo.svg" alt="logo library" />
+			<div class="main-user">
+				<img src="./img/home/person_black_24dp (1).svg" alt="icon person" />
+				<p>Usuário</p>
+				<img src="./img/home/Arrow.svg" alt="icon arrow down" />
+			</div>
+		</nav>
+		<div class="main-library">
+			<a href="./home.html" class="main-path"
+				><div>
+					<img
+						src="./img/newbook/chevron_left_FILL0_wght400_GRAD0_opsz48.svg"
+						alt="icon arrow left"
+					/>
+				</div>
+				<p>Home <strong>/ Biblioteca</strong></p>
+			</a>
+			<div class="main-library-center" id="booksContainer">
+				<!-- SEARCH BOOKS -->
+				<div class="main-library-search">
+					<form action="#" method="post" id="librarySearchForm">
+						<label class="inputsearchAndBtn">
+							<img src="./img/library/Caminho 263.svg" alt="ícone de lupa" />
 
-              <input
-                type="search"
-                name="searchBook"
-                id="searchBook"
-                placeholder="Pesquisar livro..."
-              />
-              <button type="submit" class="searchBookBtn">Buscar</button>
-            </label>
-            <select name="filterGenre" id="filterGenre">
-              <option value="tittle">Titulo</option>
-              <option value="genre">Gênero</option>
-              <option value="author">Autor</option>
-              <option value="systemEntryDate">Data de entrada</option>
-            </select>
-          </form>
-        </div>
-        <div class="main-library-cards"></div>
-      </div>
-    </div>
-    <div id="modalContainer" class="modal-container">
-      <div class="modal-book">
-        <div class="modal-top-side">
-          <div class="modal-left-side">
-            <img src="" alt="Carregando..." id="modalBookCover" />
-            <button
-              class="lent-book-btn"
-              id="lentBookBtn"
-              type="button"
-              id="indexSave"
-              onclick="lendBook()"
-            >
-              <img
-                src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
-                alt="Ícone de livro aberto"
-              />Emprestar
-            </button>
-          </div>
-          <div class="modal-right-side">
-            <div class="modal-txt-info">
-              <h2 id="modalBookTittle">Carregando...</h2>
-              <h3>Sinopse</h3>
-              <p id="modalBookSynopsis">carregando...</p>
-              <h3>Autor</h3>
-              <p id="modalBookAuthor">carregando...</p>
-              <h3>Gênero</h3>
-              <p id="modalBookGenre">carregando...</p>
-              <h3>Data de entrada</h3>
-              <p id="modalBookDate">carregando...</p>
-            </div>
-            <div class="modal-btns">
-              <button type="button" class="modalEditBtn" onclick="editBook()">Editar</button>
-              <button type="button" class="modalInactivateBtn" onclick="inactivateBook()">
-                Inativar
-              </button>
-              <button type="button" class="modalHistoryBtn" onclick="historyBook()">
-                Histórico
-              </button>
-            </div>
-          </div>
-          <div class="modal-close" onclick="closeModal()">
-            <img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
-          </div>
-        </div>
-        <div class="modal-rent-history" id="modalRentHistory">
-          <h2>Dados do aluno</h2>
-          <table class="table-rent-history">
-            <thead>
-              <tr class="tr-thead">
-                <th>Nome do aluno</th>
-                <th>Turma</th>
-                <th>Data da retirada</th>
-                <th>Data da entrega</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyRentHistory">
-              <tr class="tr-tbody" id="trRentHistory"></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="lent-book" id="lentBook">
-        <h3>Informe os dados do aluno antes de continuar</h3>
-        <form action="#" method="post" class="lent-book-form" id="lentBookForm">
-          <div>
-            <label for="studentName">Nome do Aluno</label>
-            <input type="text" placeholder="Nome do Aluno" name="student name" id="studentName" />
-          </div>
-          <div>
-            <label for="studentClass">Turma</label>
-            <input type="text" placeholder="Turma" name="student class" id="studentClass" />
-          </div>
-          <div>
-            <label for="withdrawalDate">Data da Retirada</label>
-            <input type="date" name="withdrawal date" id="withdrawalDate" />
-          </div>
-          <div>
-            <label for="deliveryDate">Data da Entrega</label>
-            <input type="date" name="delivery date" id="deliveryDate" />
-          </div>
-        </form>
-        <button type="submit" form="lentBookForm" class="lent-book-btn">
-          <img
-            src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
-            alt="Ícone de livro aberto"
-          />Emprestar
-        </button>
-        <div class="modal-close" onclick="closeModalLent()">
-          <img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
-        </div>
-      </div>
-      <div class="modal-all-rent-history" id="modalAllRentHistory">
-        <h2>Histórico de empréstimos do livro</h2>
-        <table class="table-all-rent-history">
-          <thead>
-            <tr>
-              <th>Aluno</th>
-              <th>Turma</th>
-              <th>Data da retirada</th>
-              <th>Data da entrega</th>
-            </tr>
-            <tr>
-              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
-              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
-              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
-              <th><img src="./img/library/Caminho 147.svg" alt="ícone seta de linhas" /></th>
-            </tr>
-          </thead>
-          <tbody id="tbodyModalAllRentHistory"></tbody>
-        </table>
-        <div class="modal-close" onclick="closeHistoryBook()">
-          <img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
-        </div>
-      </div>
-    </div>
-  </body>
+							<input
+								type="search"
+								name="searchBook"
+								id="searchBook"
+								placeholder="Pesquisar livro..."
+							/>
+							<button type="submit" class="searchBookBtn">Buscar</button>
+						</label>
+						<select name="filterGenre" id="filterGenre">
+							<option value="tittle">Titulo</option>
+							<option value="genre">Gênero</option>
+							<option value="author">Autor</option>
+							<option value="systemEntryDate">Data de entrada</option>
+						</select>
+					</form>
+				</div>
+				<div class="main-library-cards"></div>
+			</div>
+		</div>
+
+		<!-- MODAL - BOOK INFO -->
+		<div id="modalContainer" class="modal-container">
+			<div class="modal-book">
+				<div class="modal-top-side">
+					<div class="modal-left-side">
+						<img src="" alt="Carregando..." id="modalBookCover" />
+						<button
+							class="lent-book-btn"
+							id="lentBookBtn"
+							type="button"
+							id="indexSave"
+							onclick="lendBook()"
+						>
+							<img
+								src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+								alt="Ícone de livro aberto"
+							/>Emprestar
+						</button>
+					</div>
+					<div class="modal-right-side">
+						<div class="modal-txt-info">
+							<h2 id="modalBookTittle">Carregando...</h2>
+							<h3>Sinopse</h3>
+							<p id="modalBookSynopsis">carregando...</p>
+							<h3>Autor</h3>
+							<p id="modalBookAuthor">carregando...</p>
+							<h3>Gênero</h3>
+							<p id="modalBookGenre">carregando...</p>
+							<h3>Data de entrada</h3>
+							<p id="modalBookDate">carregando...</p>
+						</div>
+						<div class="modal-btns">
+								<button type="button" class="modalEditBtn" onclick="editBook()">
+									Editar
+								</button>
+							<button
+								type="button"
+								class="modalInactivateBtn"
+								onclick="inactivateBook()"
+							>
+								Inativar
+							</button>
+							<button type="button" class="modalHistoryBtn" onclick="historyBook()">
+								Histórico
+							</button>
+						</div>
+					</div>
+					<div class="modal-close" onclick="closeModal()">
+						<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
+					</div>
+				</div>
+
+				<!-- MODAL - CURRENT RENT -->
+				<div class="modal-rent-history" id="modalRentHistory">
+					<h2>Dados do aluno</h2>
+					<table class="table-rent-history">
+						<thead>
+							<tr class="tr-thead">
+								<th>Nome do aluno</th>
+								<th>Turma</th>
+								<th>Data da retirada</th>
+								<th>Previsão de entrega</th>
+							</tr>
+						</thead>
+						<tbody id="tbodyRentHistory">
+							<tr class="tr-tbody" id="trRentHistory"></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="lent-book" id="lentBook">
+				<h3>Informe os dados do aluno antes de continuar</h3>
+				<form action="#" method="post" class="lent-book-form" id="lentBookForm">
+					<div>
+						<label for="studentName">Nome do Aluno</label>
+						<input
+							type="text"
+							placeholder="Nome do Aluno"
+							name="student name"
+							id="studentName"
+						/>
+					</div>
+					<div>
+						<label for="studentClass">Turma</label>
+						<input
+							type="text"
+							placeholder="Turma"
+							name="student class"
+							id="studentClass"
+						/>
+					</div>
+					<div>
+						<label for="withdrawalDate">Data da Retirada</label>
+						<input type="date" name="withdrawal date" id="withdrawalDate" />
+					</div>
+					<div>
+						<label for="deliveryDate">Data da Entrega</label>
+						<input type="date" name="delivery date" id="deliveryDate" />
+					</div>
+				</form>
+				<button type="submit" form="lentBookForm" class="lent-book-btn">
+					<img
+						src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+						alt="Ícone de livro aberto"
+					/>Emprestar
+				</button>
+				<div class="modal-close" onclick="closeModalLent()">
+					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
+				</div>
+			</div>
+
+			<!-- MODAL - BUTTON HISTORY -->
+			<div class="modal-all-rent-history" id="modalAllRentHistory">
+				<h2>Histórico de empréstimos do livro</h2>
+				<table class="table-all-rent-history">
+					<thead>
+						<tr class="tr-tittle-history">
+							<th>Aluno</th>
+							<th>Turma</th>
+							<th>Data da retirada</th>
+							<th>Data da entrega</th>
+						</tr>
+						<tr id="trFilterHistory" class="tr-filter-history">
+							<th>
+								<img
+									src="./img/library/Caminho 147.svg"
+									alt="ícone seta de linhas"
+								/><input
+									oninput="filterHistory(this)"
+									type="text"
+									name="student name"
+									id="studentNameFilter"
+								/>
+								<div class="line"></div>
+							</th>
+							<th>
+								<img
+									src="./img/library/Caminho 147.svg"
+									alt="ícone seta de linhas"
+								/><input
+									oninput="filterHistory(this)"
+									type="text"
+									name="student class"
+									id="classFilter"
+								/>
+								<div class="line"></div>
+							</th>
+							<th>
+								<img
+									src="./img/library/Caminho 147.svg"
+									alt="ícone seta de linhas"
+								/>
+								<input
+									oninput="filterHistory(this)"
+									type="text"
+									name="withdrawal date"
+									id="withdrawalDateFilter"
+								/>
+								<div class="line"></div>
+							</th>
+							<th>
+								<img
+									src="./img/library/Caminho 147.svg"
+									alt="ícone seta de linhas"
+								/><input
+									oninput="filterHistory(this)"
+									type="text"
+									name="delivery date"
+									id="deliveryDateFilter"
+								/>
+								<div class="line"></div>
+							</th>
+						</tr>
+					</thead>
+					<tbody
+						id="tbodyModalAllRentHistory"
+						class="tbody-all-rent-history"
+					></tbody>
+				</table>
+				<div class="modal-close" onclick="closeHistoryBook()">
+					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
