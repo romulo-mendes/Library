@@ -58,6 +58,7 @@ $lentBookForm.addEventListener("submit", (e) => {
 		localStorage.setItem("allData", JSON.stringify(allData));
 		alert("Livro emprestado com sucesso!");
 		closeModalLent();
+		closeModal();
 	}
 });
 
@@ -119,11 +120,11 @@ function checkLentBtn() {
 	let bookIndex = $modalBook.dataset.number;
 	if (booksFiltered[bookIndex].rentHistory.length > 0) {
 		$tr.innerHTML = "";
-		let currentDate = new Date().toLocaleDateString("pt-br");
+		let currentDate = new Date();
 		let rentHistory = booksFiltered[bookIndex].rentHistory;
 		let lastRentDate = rentHistory[rentHistory.length - 1].deliveryDate;
 		let lastRent = rentHistory[rentHistory.length - 1];
-		lastRentDate = new Date(lastRentDate).toLocaleDateString("pt-br");
+		lastRentDate = new Date(lastRentDate);
 		if (lastRentDate > currentDate) {
 			$modalRentHistory.classList.add("show-rent-history");
 			for (const property in lastRent) {
@@ -193,5 +194,9 @@ function closeHistoryBook() {
 function editBook() {
 	let bookIndex = $modalBook.dataset.number;
 	url = "./edit.html?id=" + bookIndex;
-	window.location.assign(url)
+	window.location.assign(url);
+}
+
+function inactivateBook(){
+	$modalBook.classList.remove("show-modal");
 }
