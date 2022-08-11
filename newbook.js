@@ -7,6 +7,7 @@ let $bookAuthor = document.getElementById("bookAuthor");
 let $bookGenre = document.getElementById("bookGenre");
 let $bookEntry = document.getElementById("bookEntry");
 var $labelFileCenter = document.querySelector(".labelFileCenter");
+let $newBookCancelBtn = document.getElementById("newBookCancelBtn");
 var SaveUrl;
 
 $newBook.addEventListener("submit", (e) => {
@@ -39,9 +40,6 @@ $newBook.addEventListener("submit", (e) => {
 	}
 });
 
-function newBookCancelBtn() {
-	window.location.assign("./home.html");
-}
 function changePreview(teste) {
 	const file = teste.files[0];
 
@@ -57,3 +55,5 @@ function changePreview(teste) {
 		});
 	} else $labelFileCenter.style.display = "block";
 }
+
+$newBookCancelBtn.onclick = () => window.location.assign("./home.html");

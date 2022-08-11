@@ -26,7 +26,6 @@ $labelFileCenter.style.display = "none";
 
 $editBookForm.addEventListener("submit", (e) => {
 	e.preventDefault();
-	console.log(allData.books[bookId].tittle);
 	allData.books[bookId].tittle = $bookTitle.value;
 	allData.books[bookId].synopsis = $bookSynopsis.value;
 	allData.books[bookId].author = $bookAuthor.value;
@@ -34,7 +33,7 @@ $editBookForm.addEventListener("submit", (e) => {
 	allData.books[bookId].systemEntryDate = new Date(
 		$bookEntry.value
 	).toLocaleDateString("pt-br");
-	allData.books[bookId].image = SaveUrl;
+	if (SaveUrl) allData.books[bookId].image = SaveUrl;
 	localStorage.setItem("allData", JSON.stringify(allData));
 	alert("Livro editado com sucesso!");
 	window.location.assign("./library.html");

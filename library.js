@@ -130,6 +130,7 @@ function checkModalBook() {
 	let bookIndex = $modalBook.dataset.number;
 	let bookStatus = booksFiltered[bookIndex].status.isActive;
 	if (booksFiltered[bookIndex].rentHistory.length > 0 && bookStatus == true) {
+		$modalInactiveInfo.classList.remove("show-display-block");
 		showLastRent();
 	} else if (bookStatus == false) {
 		$modalInactiveInfo.classList.add("show-display-block");
@@ -139,6 +140,7 @@ function checkModalBook() {
 		$modalInactiveInfo.classList.remove("show-display-block");
 		$lentBookBtn.classList.remove("lent-book-btn-disabled");
 		$modalRentHistory.classList.remove("show-display-block");
+
 		$lentBookBtn.innerHTML =
 			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
 		/* $lentBookBtn.onclick = lendBook(); */

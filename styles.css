@@ -61,7 +61,7 @@ a {
 	height: 45px;
 	width: 353px;
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: 700;
 	margin-top: 32px;
 	cursor: pointer;
 }
@@ -74,6 +74,7 @@ a {
 
 .main-container {
 	background-color: #f4f4f4;
+	width: 100vw;
 }
 .main-nav {
 	display: flex;
@@ -88,8 +89,21 @@ a {
 	align-items: center;
 	font-size: 18px;
 	cursor: pointer;
+	position: relative;
 }
-
+.main-user-logout {
+	background-color: #f4f4f4;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 16px 0;
+	width: 148px;
+	height: 57px;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	display: none;
+	transition: 0.3s;
+}
 .main-home {
 	margin: 24px;
 	background-color: #fff;
@@ -138,22 +152,26 @@ a {
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	border-radius: 5px;
 	height: 624px;
-	padding: 24px;
+	position: relative;
 }
 .main-path {
 	display: flex;
 	gap: 8px;
-	align-self: flex-start;
 	text-decoration: none;
 	padding: 24px;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 .form-book {
 	display: flex;
-	align-items: center;
+	gap: 48px;
+	/* align-items: center; */
 	justify-content: center;
-	margin-top: 117px;
+	flex-wrap: wrap;
 }
 .newBookGrid input,
 .newBookGrid select,
@@ -164,7 +182,7 @@ a {
 	min-height: 53px;
 	padding: 16px;
 }
-.form-book label {
+.newBookGrid label {
 	position: absolute;
 	margin: 16px;
 	color: #133052;
@@ -178,7 +196,6 @@ a {
 	grid-template-rows: repeat(3, 1fr);
 	grid-column-gap: 24px;
 	grid-row-gap: 24px;
-	margin: 32px 48px;
 }
 .newBookGrid1 {
 	grid-area: 1 / 1 / 2 / 2;
@@ -212,6 +229,8 @@ a {
 	background-size: cover;
 }
 .newBookLabelFile {
+	height: 206px;
+	width: 172px;
 	font-size: 20px;
 	cursor: pointer;
 	position: relative;
@@ -222,11 +241,8 @@ a {
 	color: #ffc501 !important;
 	position: absolute;
 	top: 50%;
-	left: 20%;
-	transform: translate(0, -50%);
-}
-#bookEntry:focus {
-	color: black;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 #bookCover::file-selector-button {
 	display: none;
@@ -235,11 +251,12 @@ a {
 	background-color: #fff;
 }
 .newBookBtn {
-	align-self: flex-end;
-	margin-right: 187px;
 	display: flex;
 	gap: 24px;
+	margin-top: 8px;
 	cursor: pointer;
+	margin-left: auto;
+	grid-area: 4 / 2 / 5 /3;
 }
 .newBookBtn button {
 	width: 143px;
@@ -266,20 +283,20 @@ a {
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	border-radius: 5px;
 	height: 100%;
+	position: relative;
 }
-.main-library-center {
-	margin: 48px 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 76px;
-	flex-direction: column;
+.main-library-search {
+	margin: 100px 0 76px 0;
 }
 .main-library-search form {
 	display: flex;
 	gap: 32px;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }
 .inputsearchAndBtn {
 	width: 666px;
@@ -311,6 +328,7 @@ a {
 	border: 0;
 	cursor: pointer;
 }
+
 #filterGenre {
 	border: #adb5bd 1px solid;
 	border-radius: 5px;
@@ -320,7 +338,9 @@ a {
 	appearance: none;
 	background: url(./img/library/Polígono\ 4down.svg) 95%/ 10px no-repeat;
 	cursor: pointer;
+	position: relative;
 	transition: 0.3s;
+	z-index: 0;
 }
 #filterGenre:focus {
 	appearance: none;
@@ -528,10 +548,19 @@ a {
 	font-weight: 500;
 	color: #3e4756;
 }
+/* History */
+.main-history {
+	margin: 24px;
+	padding: 25px;
+	background-color: #fff;
+	border-radius: 5px;
+	height: 624px;
+	position: relative;
+}
 .table-all-rent-history {
 	width: 100%;
 	text-align: left;
-	margin-top: 29px;
+	margin-top: 90px;
 }
 .table-all-rent-history tr {
 	height: 41px;

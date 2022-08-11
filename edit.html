@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Library - Editar livro</title>
+		<script src="./nav.js" defer></script>
 		<script src="./edit.js" defer></script>
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,10 +18,13 @@
 	<body class="main-container">
 		<nav class="main-nav">
 			<img src="./img/home/Logo.svg" alt="logo library" />
-			<div class="main-user">
+			<div class="main-user" id="userLogged">
 				<img src="./img/home/person_black_24dp (1).svg" alt="icon person" />
 				<p>Usuário</p>
 				<img src="./img/home/Arrow.svg" alt="icon arrow down" />
+				<div class="main-user-logout" id="userLogout" onclick="userLogout()">
+					<p>Sair</p>
+				</div>
 			</div>
 		</nav>
 		<div class="main-newbook">
@@ -80,14 +84,16 @@
 						<label for="bookEntry">Data de entrada</label>
 						<input type="date" name="bookEntry" id="bookEntry" au />
 					</div>
+					<div class="newBookBtn">
+						<a href="./library.html">
+							<button type="button" id="newBookCancelBtn">CANCELAR</button></a
+						>
+						<button type="submit" form="editBookForm" id="newBookSaveBtn">
+							SALVAR
+						</button>
+					</div>
 				</div>
 			</form>
-			<div class="newBookBtn">
-				<a href="./library.html">
-					<button type="button" id="newBookCancelBtn">CANCELAR</button></a
-				>
-				<button type="submit" form="editBookForm" id="newBookSaveBtn">SALVAR</button>
-			</div>
 		</div>
 	</body>
 </html>
