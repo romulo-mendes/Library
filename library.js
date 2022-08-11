@@ -20,7 +20,14 @@ let $studentClass = document.getElementById("studentClass");
 let $withdrawalDate = document.getElementById("withdrawalDate");
 let $deliveryDate = document.getElementById("deliveryDate");
 let $lentBookForm = document.getElementById("lentBookForm");
-let $tr = document.getElementById("trRentHistory");
+let $trLastRent = document.getElementById("trRentHistory");
+let $modalInactiveBook = document.getElementById("modalInactiveBook");
+let $formInactive = document.getElementById("formInactive");
+let $inactiveTxt = document.getElementById("inactiveTxt");
+let $inactiveShowText = document.getElementById("inactiveShowText");
+let $modalInactivateBtn = document.getElementById("modalInactivateBtn");
+let $modalInactiveInfo = document.getElementById("modalInactiveInfo");
+
 let url;
 
 let allData = JSON.parse(localStorage.getItem("allData"));
@@ -30,7 +37,7 @@ showBooks();
 
 $lentBookForm.addEventListener("submit", (e) => {
 	e.preventDefault();
-	let bookIndex = $modalBook.dataset.number;
+	let bookIndex = $modalBook.dataset.index;
 	let rentHistory = {};
 
 	if (
@@ -53,8 +60,7 @@ $lentBookForm.addEventListener("submit", (e) => {
 		$studentClass.value = "";
 		$withdrawalDate.value = "";
 		$deliveryDate.value = "";
-		booksFiltered[bookIndex].rentHistory.push(rentHistory);
-		allData.books = booksFiltered;
+		allData.books[bookIndex].rentHistory.push(rentHistory);
 		localStorage.setItem("allData", JSON.stringify(allData));
 		alert("Livro emprestado com sucesso!");
 		closeModalLent();
@@ -66,7 +72,7 @@ $librarySearchForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	let filterGenre = $filterGenre.value;
 	let searchBook = $searchBook.value.toString().toLowerCase();
-	booksFiltered = books.filter((element) =>
+	booksFiltered = books.filter((element, bookIndex) =>
 		element[filterGenre].toLowerCase().includes(searchBook)
 	);
 	showBooks();
@@ -81,18 +87,22 @@ function showBooks() {
 
 		$BookCard.classList.add("book-card");
 		$BookCard.onclick = () => {
-			$modalContainer.classList.add("show-modal");
-			$modalBook.classList.add("show-modal");
+			$modalContainer.classList.add("show-display-flex");
+			$modalBook.classList.add("show-display-flex");
 			$modalBookCover.src = element.image;
 			$modalBookTittle.textContent = element.tittle;
 			$modalBookSynopsis.textContent = element.synopsis;
 			$modalBookAuthor.textContent = element.author;
 			$modalBookGenre.textContent = element.genre;
 			$modalBookDate.textContent = element.systemEntryDate;
+			books.forEach((book, index) => {
+				if (element.tittle == book.tittle)
+					$modalBook.setAttribute("data-index", index);
+			});
 			$modalBook.setAttribute("data-number", bookIndex);
-			checkLentBtn();
+			checkIsActive();
+			checkModalBook();
 		};
-
 		$BookCardCover.src = element.image;
 		$BookCardTitle.textContent = element.tittle;
 		$BookCard.appendChild($BookCardCover);
@@ -102,59 +112,80 @@ function showBooks() {
 }
 
 function closeModal() {
-	$modalRentHistory.classList.remove("show-rent-history");
+	$modalRentHistory.classList.remove("show-display-block");
 	$lentBookBtn.classList.add("lent-book-btn-disabled");
-	$modalContainer.classList.remove("show-modal");
+	$modalContainer.classList.remove("show-display-flex");
 }
 function lendBook() {
-	$modalBook.classList.remove("show-modal");
-	$lentBook.classList.add("show-modal");
+	$modalBook.classList.remove("show-display-flex");
+	$lentBook.classList.add("show-display-flex");
 }
 
 function closeModalLent() {
-	$lentBook.classList.remove("show-modal");
-	$modalBook.classList.add("show-modal");
+	$lentBook.classList.remove("show-display-flex");
+	$modalBook.classList.add("show-display-flex");
 }
 
-function checkLentBtn() {
+function checkModalBook() {
 	let bookIndex = $modalBook.dataset.number;
-	if (booksFiltered[bookIndex].rentHistory.length > 0) {
-		$tr.innerHTML = "";
-		let currentDate = new Date();
-		let rentHistory = booksFiltered[bookIndex].rentHistory;
-		let lastRentDate = rentHistory[rentHistory.length - 1].deliveryDate;
-		let lastRent = rentHistory[rentHistory.length - 1];
-		lastRentDate = new Date(lastRentDate);
-		if (lastRentDate > currentDate) {
-			$modalRentHistory.classList.add("show-rent-history");
-			for (const property in lastRent) {
-				let $th = document.createElement("th");
-				$th.textContent = lastRent[property];
-				$tr.appendChild($th);
-			}
-			$lentBookBtn.classList.add("lent-book-btn-disabled");
-			$lentBookBtn.innerHTML =
-				"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Devolver";
-		} else {
-			$lentBookBtn.classList.remove("lent-book-btn-disabled");
-			$modalRentHistory.classList.remove("show-rent-history");
-			$lentBookBtn.innerHTML =
-				"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
-		}
+	let bookStatus = booksFiltered[bookIndex].status.isActive;
+	if (booksFiltered[bookIndex].rentHistory.length > 0 && bookStatus == true) {
+		showLastRent();
+	} else if (bookStatus == false) {
+		$modalInactiveInfo.classList.add("show-display-block");
+		$inactiveShowText.textContent = booksFiltered[bookIndex].status.description;
+		$lentBookBtn.disabled = true;
 	} else {
+		$modalInactiveInfo.classList.remove("show-display-block");
 		$lentBookBtn.classList.remove("lent-book-btn-disabled");
-		$modalRentHistory.classList.remove("show-rent-history");
+		$modalRentHistory.classList.remove("show-display-block");
 		$lentBookBtn.innerHTML =
 			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
+		/* $lentBookBtn.onclick = lendBook(); */
 	}
 }
 
+function showLastRent() {
+	let bookIndex = $modalBook.dataset.number;
+	$trLastRent.innerHTML = "";
+	let currentDate = new Date();
+	let rentHistory = booksFiltered[bookIndex].rentHistory;
+	let lastRentDate = rentHistory[rentHistory.length - 1].deliveryDate;
+	let lastRent = rentHistory[rentHistory.length - 1];
+	/* lastRentDate = new Date(lastRentDate.split("/").reverse().join("-")); */
+	lastRentDate = new Date(lastRentDate);
+	let day = lastRentDate.getDate();
+	let month = lastRentDate.getMonth();
+	let year = lastRentDate.getFullYear();
+	lastRentDate = new Date(year, month, day);
+	if (lastRentDate > currentDate) {
+		$modalRentHistory.classList.add("show-display-block");
+		for (const property in lastRent) {
+			let $th = document.createElement("th");
+			$th.textContent = lastRent[property];
+			$trLastRent.appendChild($th);
+		}
+		$lentBookBtn.classList.add("lent-book-btn-disabled");
+		$lentBookBtn.innerHTML =
+			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Devolver";
+		$lentBookBtn.onclick = returnBook();
+	} else {
+		$lentBookBtn.classList.remove("lent-book-btn-disabled");
+		$modalRentHistory.classList.remove("show-display-block");
+		$lentBookBtn.innerHTML =
+			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
+		$lentBookBtn.onclick = "lendBook()";
+	}
+}
+function returnBook() {
+	console.log("ok");
+}
 function historyBook() {
 	let bookIndex = $modalBook.dataset.number;
 	let currentBook = booksFiltered[bookIndex].rentHistory;
-	$modalBook.classList.remove("show-modal");
+	$modalBook.classList.remove("show-display-flex");
 	$tbodyModalAllRentHistory.innerHTML = "";
-	$modalAllRentHistory.classList.add("show-rent-history");
+	$modalAllRentHistory.classList.add("show-display-block");
 	currentBook.forEach((element) => {
 		let $tr = document.createElement("tr");
 		for (const property in element) {
@@ -187,16 +218,43 @@ function filterHistory(property) {
 }
 
 function closeHistoryBook() {
-	$modalBook.classList.add("show-modal");
-	$modalAllRentHistory.classList.remove("show-rent-history");
+	$modalBook.classList.add("show-display-flex");
+	$modalAllRentHistory.classList.remove("show-display-block");
 }
 
 function editBook() {
-	let bookIndex = $modalBook.dataset.number;
+	let bookIndex = $modalBook.dataset.index;
 	url = "./edit.html?id=" + bookIndex;
 	window.location.assign(url);
 }
 
-function inactivateBook(){
-	$modalBook.classList.remove("show-modal");
+function inactivateBook() {
+	$modalBook.classList.remove("show-display-flex");
+	$modalInactiveBook.classList.add("show-display-block");
+}
+function closeInactiveModal() {
+	$modalInactiveBook.classList.remove("show-display-block");
+	$modalBook.classList.add("show-display-flex");
+}
+
+$formInactive.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let bookIndex = $modalBook.dataset.index;
+	allData.books[bookIndex].status.isActive = false;
+	allData.books[bookIndex].status.description = $inactiveTxt.value;
+	localStorage.setItem("allData", JSON.stringify(allData));
+	alert("Livro inativado com sucesso!");
+	closeInactiveModal();
+});
+
+function checkIsActive() {
+	let bookIndex = $modalBook.dataset.number;
+	if (booksFiltered[bookIndex].status.isActive == false) {
+		$lentBookBtn.disabled = true;
+		$lentBookBtn.classList.add("btn-inactive");
+		$lentBookBtn.classList.remove("lent-book-btn-disabled");
+	} else {
+		$lentBookBtn.disabled = false;
+		$lentBookBtn.classList.remove("btn-inactive");
+	}
 }

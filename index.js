@@ -18,5 +18,5 @@ $loginForm.addEventListener("submit", async (e) => {
 	);
 	if (!userChecked) return alert("Usuário ou senha inválido");
 
-	window.location.assign("./home.html");
+	window.location.assign("./home.html?user=" + $loginUser.value);
 });

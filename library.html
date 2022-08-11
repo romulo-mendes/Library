@@ -92,9 +92,9 @@
 							<p id="modalBookDate">carregando...</p>
 						</div>
 						<div class="modal-btns">
-								<button type="button" class="modalEditBtn" onclick="editBook()">
-									Editar
-								</button>
+							<button type="button" class="modalEditBtn" onclick="editBook()">
+								Editar
+							</button>
 							<button
 								type="button"
 								class="modalInactivateBtn"
@@ -128,6 +128,14 @@
 							<tr class="tr-tbody" id="trRentHistory"></tr>
 						</tbody>
 					</table>
+				</div>
+				<div class="modal-inactive-info" id="modalInactiveInfo">
+					<h2>Informações da inativação</h2>
+					<div class="inactive-info-text">
+						<h3>Motivo</h3>
+						<p id="inactiveShowText">Carregando...</p>
+							
+					</div>
 				</div>
 			</div>
 			<div class="lent-book" id="lentBook">
@@ -243,7 +251,25 @@
 					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
 				</div>
 			</div>
-			<div class="inactive-book" id="inactiveBook"></div>
+			<div class="inactive-book" id="modalInactiveBook">
+				<h2>Inativar Livro</h2>
+				<form action="#" method="post" class="form-inactive-modal" id="formInactive">
+					<div>
+						<label for="inactiveTxt">Descrição</label>
+						<textarea
+							name=""
+							id="inactiveTxt"
+							class="inactive-txt"
+							cols="30"
+							rows="10"
+						></textarea>
+					</div>
+					<button type="submit" class="inactive-modal-btn">Inativar</button>
+				</form>
+				<div class="modal-close" onclick="closeInactiveModal()">
+					<img src="./img/library/Caminho 265.svg" alt="Ícone de fechar" />
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
