@@ -25,58 +25,14 @@ let $modalInactiveBook = document.getElementById("modalInactiveBook");
 let $formInactive = document.getElementById("formInactive");
 let $inactiveTxt = document.getElementById("inactiveTxt");
 let $inactiveShowText = document.getElementById("inactiveShowText");
-let $modalInactivateBtn = document.getElementById("modalInactivateBtn");
 let $modalInactiveInfo = document.getElementById("modalInactiveInfo");
-
+let $returnBookBtn = document.getElementById("returnBookBtn");
+let $inactivateBtn = document.getElementById("inactivateBtn");
 let url;
-
 let allData = JSON.parse(localStorage.getItem("allData"));
 let books = allData.books;
 let booksFiltered = books;
 showBooks();
-
-$lentBookForm.addEventListener("submit", (e) => {
-	e.preventDefault();
-	let bookIndex = $modalBook.dataset.index;
-	let rentHistory = {};
-
-	if (
-		!$studentName.value ||
-		!$studentClass.value ||
-		!$withdrawalDate.value ||
-		!$deliveryDate.value
-	)
-		alert("Preencha todos os campos antes de continuar");
-	else {
-		rentHistory.studentName = $studentName.value;
-		rentHistory.class = $studentClass.value;
-		rentHistory.withdrawalDate = new Date($withdrawalDate.value).toLocaleDateString(
-			"pt-br"
-		);
-		rentHistory.deliveryDate = new Date($deliveryDate.value).toLocaleDateString(
-			"pt-br"
-		);
-		$studentName.value = "";
-		$studentClass.value = "";
-		$withdrawalDate.value = "";
-		$deliveryDate.value = "";
-		allData.books[bookIndex].rentHistory.push(rentHistory);
-		localStorage.setItem("allData", JSON.stringify(allData));
-		alert("Livro emprestado com sucesso!");
-		closeModalLent();
-		closeModal();
-	}
-});
-
-$librarySearchForm.addEventListener("submit", (e) => {
-	e.preventDefault();
-	let filterGenre = $filterGenre.value;
-	let searchBook = $searchBook.value.toString().toLowerCase();
-	booksFiltered = books.filter((element, bookIndex) =>
-		element[filterGenre].toLowerCase().includes(searchBook)
-	);
-	showBooks();
-});
 
 function showBooks() {
 	$booksContainer.innerHTML = "";
@@ -111,39 +67,19 @@ function showBooks() {
 	});
 }
 
-function closeModal() {
-	$modalRentHistory.classList.remove("show-display-block");
-	$lentBookBtn.classList.add("lent-book-btn-disabled");
-	$modalContainer.classList.remove("show-display-flex");
-}
 function lendBook() {
 	$modalBook.classList.remove("show-display-flex");
 	$lentBook.classList.add("show-display-flex");
-}
-
-function closeModalLent() {
-	$lentBook.classList.remove("show-display-flex");
-	$modalBook.classList.add("show-display-flex");
 }
 
 function checkModalBook() {
 	let bookIndex = $modalBook.dataset.number;
 	let bookStatus = booksFiltered[bookIndex].status.isActive;
 	if (booksFiltered[bookIndex].rentHistory.length > 0 && bookStatus == true) {
-		$modalInactiveInfo.classList.remove("show-display-block");
 		showLastRent();
-	} else if (bookStatus == false) {
-		$modalInactiveInfo.classList.add("show-display-block");
-		$inactiveShowText.textContent = booksFiltered[bookIndex].status.description;
-		$lentBookBtn.disabled = true;
-	} else {
-		$modalInactiveInfo.classList.remove("show-display-block");
-		$lentBookBtn.classList.remove("lent-book-btn-disabled");
-		$modalRentHistory.classList.remove("show-display-block");
-
-		$lentBookBtn.innerHTML =
-			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
-		/* $lentBookBtn.onclick = lendBook(); */
+	} else if (bookStatus == true) {
+		$lentBookBtn.classList.add("show-display-flex");
+		$returnBookBtn.classList.remove("show-display-flex");
 	}
 }
 
@@ -154,33 +90,31 @@ function showLastRent() {
 	let rentHistory = booksFiltered[bookIndex].rentHistory;
 	let lastRentDate = rentHistory[rentHistory.length - 1].deliveryDate;
 	let lastRent = rentHistory[rentHistory.length - 1];
-	/* lastRentDate = new Date(lastRentDate.split("/").reverse().join("-")); */
-	lastRentDate = new Date(lastRentDate);
-	let day = lastRentDate.getDate();
-	let month = lastRentDate.getMonth();
-	let year = lastRentDate.getFullYear();
-	lastRentDate = new Date(year, month, day);
+	lastRentDate = new Date(lastRentDate.split("/").reverse().join("-"));
 	if (lastRentDate > currentDate) {
 		$modalRentHistory.classList.add("show-display-block");
 		for (const property in lastRent) {
 			let $th = document.createElement("th");
 			$th.textContent = lastRent[property];
 			$trLastRent.appendChild($th);
+			$lentBookBtn.classList.remove("show-display-flex");
+			$returnBookBtn.classList.add("show-display-flex");
 		}
-		$lentBookBtn.classList.add("lent-book-btn-disabled");
-		$lentBookBtn.innerHTML =
-			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Devolver";
-		$lentBookBtn.onclick = returnBook();
 	} else {
-		$lentBookBtn.classList.remove("lent-book-btn-disabled");
 		$modalRentHistory.classList.remove("show-display-block");
-		$lentBookBtn.innerHTML =
-			"<img src='./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg' alt='Ícone de livro aberto' />Emprestar";
-		$lentBookBtn.onclick = "lendBook()";
+		$lentBookBtn.classList.add("show-display-flex");
+		$returnBookBtn.classList.remove("show-display-flex");
 	}
 }
 function returnBook() {
-	console.log("ok");
+	let bookIndex = $modalBook.dataset.index;
+	let currentDate = new Date().toLocaleDateString("pt-br");
+	allData.books[bookIndex].rentHistory[
+		allData.books[bookIndex].rentHistory.length - 1
+	].deliveryDate = currentDate;
+	localStorage.setItem("allData", JSON.stringify(allData));
+	alert("O livro foi devolvido com sucesso!");
+	closeModal();
 }
 function historyBook() {
 	let bookIndex = $modalBook.dataset.number;
@@ -219,11 +153,6 @@ function filterHistory(property) {
 	});
 }
 
-function closeHistoryBook() {
-	$modalBook.classList.add("show-display-flex");
-	$modalAllRentHistory.classList.remove("show-display-block");
-}
-
 function editBook() {
 	let bookIndex = $modalBook.dataset.index;
 	url = "./edit.html?id=" + bookIndex;
@@ -234,11 +163,41 @@ function inactivateBook() {
 	$modalBook.classList.remove("show-display-flex");
 	$modalInactiveBook.classList.add("show-display-block");
 }
-function closeInactiveModal() {
-	$modalInactiveBook.classList.remove("show-display-block");
-	$modalBook.classList.add("show-display-flex");
+function activeBook() {
+	let bookIndex = $modalBook.dataset.index;
+	allData.books[bookIndex].status.isActive = true;
+	allData.books[bookIndex].status.description = "";
+	localStorage.setItem("allData", JSON.stringify(allData));
+	alert("Livro ativado com sucesso!");
+
+	closeModal();
 }
 
+function checkIsActive() {
+	let bookIndex = $modalBook.dataset.number;
+	if (booksFiltered[bookIndex].status.isActive == false) {
+		$modalInactiveInfo.classList.add("show-display-block");
+		$inactiveShowText.textContent = booksFiltered[bookIndex].status.description;
+		$lentBookBtn.disabled = true;
+		$lentBookBtn.classList.add("btn-inactive");
+		$inactivateBtn.setAttribute("onclick", "activeBook()");
+		$inactivateBtn.classList.add("modal-active-btn");
+		$inactivateBtn.textContent = "Ativar";
+		if ($returnBookBtn.classList.contains("show-display-flex")) {
+			$lentBookBtn.classList.add("show-display-flex");
+			$returnBookBtn.classList.remove("show-display-flex");
+		}
+	} else {
+		$inactivateBtn.setAttribute("onclick", "inactivateBook()");
+		$inactivateBtn.classList.remove("modal-active-btn");
+		$inactivateBtn.textContent = "Inativar";
+		$modalInactiveInfo.classList.remove("show-display-block");
+		$lentBookBtn.disabled = false;
+		$lentBookBtn.classList.remove("btn-inactive");
+	}
+}
+
+/* EventListeners */
 $formInactive.addEventListener("submit", (e) => {
 	e.preventDefault();
 	let bookIndex = $modalBook.dataset.index;
@@ -247,16 +206,69 @@ $formInactive.addEventListener("submit", (e) => {
 	localStorage.setItem("allData", JSON.stringify(allData));
 	alert("Livro inativado com sucesso!");
 	closeInactiveModal();
+	closeModal();
 });
 
-function checkIsActive() {
-	let bookIndex = $modalBook.dataset.number;
-	if (booksFiltered[bookIndex].status.isActive == false) {
-		$lentBookBtn.disabled = true;
-		$lentBookBtn.classList.add("btn-inactive");
-		$lentBookBtn.classList.remove("lent-book-btn-disabled");
-	} else {
-		$lentBookBtn.disabled = false;
-		$lentBookBtn.classList.remove("btn-inactive");
+$librarySearchForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let filterGenre = $filterGenre.value;
+	let searchBook = $searchBook.value.toString().toLowerCase();
+	booksFiltered = books.filter((element, bookIndex) =>
+		element[filterGenre].toLowerCase().includes(searchBook)
+	);
+	showBooks();
+});
+
+$lentBookForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let bookIndex = $modalBook.dataset.index;
+	let rentHistory = {};
+
+	if (
+		!$studentName.value ||
+		!$studentClass.value ||
+		!$withdrawalDate.value ||
+		!$deliveryDate.value
+	)
+		alert("Preencha todos os campos antes de continuar");
+	else {
+		rentHistory.studentName = $studentName.value;
+		rentHistory.class = $studentClass.value;
+		rentHistory.withdrawalDate = new Date($withdrawalDate.value).toLocaleDateString(
+			"pt-br"
+		);
+		rentHistory.deliveryDate = new Date($deliveryDate.value).toLocaleDateString(
+			"pt-br"
+		);
+		$studentName.value = "";
+		$studentClass.value = "";
+		$withdrawalDate.value = "";
+		$deliveryDate.value = "";
+		allData.books[bookIndex].rentHistory.push(rentHistory);
+		localStorage.setItem("allData", JSON.stringify(allData));
+		alert("Livro emprestado com sucesso!");
+		closeModalLent();
+		closeModal();
 	}
+});
+
+/* Functions Close */
+function closeInactiveModal() {
+	$modalInactiveBook.classList.remove("show-display-block");
+	$modalBook.classList.add("show-display-flex");
+}
+
+function closeHistoryBook() {
+	$modalBook.classList.add("show-display-flex");
+	$modalAllRentHistory.classList.remove("show-display-block");
+}
+
+function closeModalLent() {
+	$lentBook.classList.remove("show-display-flex");
+	$modalBook.classList.add("show-display-flex");
+}
+
+function closeModal() {
+	$modalRentHistory.classList.remove("show-display-block");
+	$modalContainer.classList.remove("show-display-flex");
 }

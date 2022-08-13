@@ -72,17 +72,29 @@
 				<div class="modal-top-side">
 					<div class="modal-left-side">
 						<img src="" alt="Carregando..." id="modalBookCover" />
+						<!-- Lent Button Default -->
 						<button
-							class="lent-book-btn"
+							class="lent-book-btn show-display-flex"
 							id="lentBookBtn"
 							type="button"
-							id="indexSave"
 							onclick="lendBook()"
 						>
 							<img
 								src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
 								alt="Ícone de livro aberto"
 							/>Emprestar
+						</button>
+						<!-- Return Button Default -->
+						<button
+							class="return-book-btn"
+							id="returnBookBtn"
+							type="button"
+							onclick="returnBook()"
+						>
+							<img
+								src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
+								alt="Ícone de livro aberto"
+							/>Devolver
 						</button>
 					</div>
 					<div class="modal-right-side">
@@ -103,7 +115,8 @@
 							</button>
 							<button
 								type="button"
-								class="modalInactivateBtn"
+								class="modal-inactivate-btn"
+								id="inactivateBtn"
 								onclick="inactivateBook()"
 							>
 								Inativar
@@ -150,7 +163,6 @@
 						<label for="studentName">Nome do Aluno</label>
 						<input
 							type="text"
-							placeholder="Nome do Aluno"
 							name="student name"
 							id="studentName"
 						/>
@@ -159,7 +171,6 @@
 						<label for="studentClass">Turma</label>
 						<input
 							type="text"
-							placeholder="Turma"
 							name="student class"
 							id="studentClass"
 						/>
@@ -173,7 +184,7 @@
 						<input type="date" name="delivery date" id="deliveryDate" />
 					</div>
 				</form>
-				<button type="submit" form="lentBookForm" class="lent-book-btn">
+				<button type="submit" form="lentBookForm" class="lent-book-btn-modal">
 					<img
 						src="./img/library/auto_stories_FILL0_wght400_GRAD0_opsz48 (1).svg"
 						alt="Ícone de livro aberto"

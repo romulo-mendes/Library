@@ -287,6 +287,7 @@ a {
 	border-radius: 5px;
 	height: 100%;
 	position: relative;
+	padding-bottom: 50px;
 }
 .main-library-search {
 	margin: 100px 0 76px 0;
@@ -360,6 +361,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-radius: 5px;
 	padding: 24px;
 	background-color: #f4f4f4;
 	gap: 16px;
@@ -394,7 +396,7 @@ a {
 }
 .modal-top-side {
 	width: 816px;
-	height: 585px;
+	min-height: 585px;
 	display: flex;
 	gap: 40px;
 	padding: 70px 40px 40px;
@@ -418,6 +420,17 @@ a {
 	background-color: #ffc505;
 	border: 1px solid #adb5bd;
 	padding: 16px 82px;
+	display: none;
+	gap: 12px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.lent-book-btn-modal {
+	background-color: #ffc505;
+	border: 1px solid #adb5bd;
+	padding: 16px 82px;
 	display: flex;
 	gap: 12px;
 	font-size: 16px;
@@ -425,13 +438,17 @@ a {
 	border-radius: 5px;
 	cursor: pointer;
 }
-.lent-book-btn-disabled {
+.return-book-btn {
 	background-color: #f4f4f4;
+	border: 1px solid #adb5bd;
 	color: #000;
+	padding: 16px 82px;
+	display: flex;
+	gap: 12px;
 	font-size: 16px;
 	font-weight: 500;
-	cursor: default;
-	margin-top: 32px;
+	cursor: pointer;
+	display: none;
 }
 .modal-txt-info {
 	color: #3e4756;
@@ -470,9 +487,14 @@ a {
 	color: #167ce2;
 	cursor: pointer;
 }
-.modalInactivateBtn {
+.modal-inactivate-btn {
 	border: 1px solid #ed5e5e;
 	color: #ed5e5e;
+	cursor: pointer;
+}
+.modal-active-btn {
+	border: 1px solid #49d749;
+	color: #49d749;
 	cursor: pointer;
 }
 .modalHistoryBtn {
@@ -520,7 +542,10 @@ a {
 .lent-book-form label {
 	position: absolute;
 	margin: 16px;
-	display: none;
+	color: #133052;
+	padding: 0 5px;
+	background-color: #fff;
+	transform: scale(0.8) translate(-10%, -150%);
 }
 .lent-book-form input {
 	border: 1px solid #133052;
@@ -671,6 +696,7 @@ a {
 	color: #ed5e5e;
 	font-weight: 500;
 	align-self: flex-end;
+	cursor: pointer;
 }
 .btn-inactive {
 	opacity: 0.4;

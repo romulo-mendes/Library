@@ -1,6 +1,6 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const bookId = urlParams.get("id");
+const queryStringId = window.location.search;
+const urlParamsId = new URLSearchParams(queryStringId);
+const bookId = urlParamsId.get("id");
 let allData = JSON.parse(localStorage.getItem("allData"));
 let books = allData.books;
 let currentBook = books[bookId];
