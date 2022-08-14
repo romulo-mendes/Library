@@ -28,6 +28,7 @@ let $inactiveShowText = document.getElementById("inactiveShowText");
 let $modalInactiveInfo = document.getElementById("modalInactiveInfo");
 let $returnBookBtn = document.getElementById("returnBookBtn");
 let $inactivateBtn = document.getElementById("inactivateBtn");
+let $mainLibraryCards = document.getElementById("mainLibraryCards");
 let url;
 let allData = JSON.parse(localStorage.getItem("allData"));
 let books = allData.books;
@@ -43,7 +44,8 @@ function showBooks() {
 
 		$BookCard.classList.add("book-card");
 		$BookCard.onclick = () => {
-			$modalContainer.classList.add("show-display-flex");
+			$modalContainer.classList.add("show-display-block");
+			$mainLibraryCards.style.position = "fixed";
 			$modalBook.classList.add("show-display-flex");
 			$modalBookCover.src = element.image;
 			$modalBookTittle.textContent = element.tittle;
@@ -270,5 +272,6 @@ function closeModalLent() {
 
 function closeModal() {
 	$modalRentHistory.classList.remove("show-display-block");
-	$modalContainer.classList.remove("show-display-flex");
+	$modalContainer.classList.remove("show-display-block");
+	$mainLibraryCards.style.position = "relative";
 }

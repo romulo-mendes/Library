@@ -380,10 +380,9 @@ a {
 	height: 100vh;
 	background-color: #3a3a4070;
 	border: 1px solid #707070;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	display: none;
-	justify-content: center;
 	padding-top: 50px;
 }
 .modal-book {
@@ -393,6 +392,10 @@ a {
 	border: 1px solid #707070;
 	max-height: 825px;
 	overflow-wrap: normal;
+	width: 816px;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 .modal-top-side {
 	width: 816px;
@@ -531,7 +534,9 @@ a {
 	padding: 40px;
 	display: none;
 	flex-direction: column;
-	position: relative;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 .lent-book-form {
 	margin-top: 21px;
@@ -562,12 +567,13 @@ a {
 }
 .modal-all-rent-history {
 	background-color: #fff;
-	width: 1058px;
-	height: 100%;
+	width: 80%;
 	padding: 40px;
 	border: 1px solid #707070;
 	display: none;
-	position: relative;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 .modal-all-rent-history h2 {
 	font-size: 20px;
@@ -662,6 +668,9 @@ a {
 	height: 336px;
 	width: 804px;
 	position: relative;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 	display: none;
 }
 .inactive-book h2 {
@@ -732,6 +741,7 @@ a {
 		display: block;
 		overflow-x: auto;
 		white-space: nowrap;
+		overflow: ;
 	}
 }
 @media screen and (max-width: 900px) {
@@ -741,4 +751,61 @@ a {
 }
 
 @media screen and (max-width: 820px) {
+	.modal-book {
+		max-height: none;
+		width: 100vw;
+	}
+	.modal-top-side {
+		flex-direction: column;
+		padding: 20px;
+		width: auto;
+		align-items: center;
+		gap: 15px;
+	}
+	.modal-left-side img {
+		margin-bottom: 10px;
+	}
+	.modal-btns {
+		flex-direction: column;
+	}
+	.main-home {
+		padding: 10px;
+	}
+	.main-library-search {
+		width: 90vw;
+	}
+	#searchBook {
+		width: auto;
+	}
+	.main-library-search form {
+		gap: 20px;
+	}
+	.inputsearchAndBtn {
+		width: 85vw;
+		gap: 0;
+	}
+	.modal-close {
+		padding: 10px;
+	}
+	.lent-book {
+		width: auto;
+		height: auto;
+		padding: 10px;
+	}
+	.lent-book-form {
+		justify-content: center;
+	}
+	.lent-book-btn-modal {
+		margin: auto;
+		padding: 16px 30px;
+		justify-content: center;
+	}
+	.lent-book-form input {
+		width: auto;
+	}
+}
+@media screen and (max-width: 400px) {
+	.main-nav {
+		flex-direction: column;
+	}
 }
