@@ -47,6 +47,7 @@ function showBooks() {
 			$modalContainer.classList.add("show-display-block");
 			$mainLibraryCards.style.position = "fixed";
 			$modalBook.classList.add("show-display-flex");
+			$modalBookCover.scrollIntoView();
 			$modalBookCover.src = element.image;
 			$modalBookTittle.textContent = element.tittle;
 			$modalBookSynopsis.textContent = element.synopsis;

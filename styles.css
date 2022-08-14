@@ -741,7 +741,6 @@ a {
 		display: block;
 		overflow-x: auto;
 		white-space: nowrap;
-		overflow: ;
 	}
 }
 @media screen and (max-width: 900px) {
@@ -751,6 +750,30 @@ a {
 }
 
 @media screen and (max-width: 820px) {
+	.login-card {
+		width: 90%;
+		padding: 20px 10px;
+	}
+	.login-card input {
+		width: auto;
+		max-width: 250px;
+	}
+	.login-btn {
+		max-width: 150px;
+	}
+	.login-bg {
+		margin: 0 !important;
+	}
+	.table-rent-history {
+		display: block;
+		overflow-x: auto;
+		text-align: center;
+		white-space: nowrap;
+		width: auto;
+	}
+	.table-rent-history th {
+		border-left: 10px solid #f4f4f4;
+	}
 	.modal-book {
 		max-height: none;
 		width: 100vw;
@@ -794,6 +817,8 @@ a {
 	}
 	.lent-book-form {
 		justify-content: center;
+		flex-direction: column;
+		align-items: center;
 	}
 	.lent-book-btn-modal {
 		margin: auto;
@@ -802,6 +827,7 @@ a {
 	}
 	.lent-book-form input {
 		width: auto;
+		min-width: 190px;
 	}
 	.main-newbook {
 		height: auto;
