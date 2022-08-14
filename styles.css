@@ -428,6 +428,7 @@ a {
 	font-size: 16px;
 	font-weight: 500;
 	border-radius: 5px;
+	max-height: 53px;
 	cursor: pointer;
 }
 .lent-book-btn-modal {
@@ -517,6 +518,7 @@ a {
 	padding: 16px;
 	width: 736px;
 	text-align: left;
+	margin-bottom: 15px;
 }
 .tr-thead {
 	font-size: 16px;
@@ -843,6 +845,19 @@ a {
 	}
 	body > div:nth-of-type(1) {
 		margin: 10px;
+	}
+	.inactive-book {
+		width: auto;
+		height: auto;
+		padding: 15px;
+	}
+	.inactive-txt {
+		width: auto;
+		height: auto;
+		margin: 15px 0;
+	}
+	.form-inactive-modal label{
+		transform: scale(0.8) translate(-20%, -60%);
 	}
 }
 @media screen and (max-width: 400px) {
