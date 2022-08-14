@@ -93,7 +93,9 @@ function showLastRent() {
 	let lastRentDate = rentHistory[rentHistory.length - 1].deliveryDate;
 	let lastRent = rentHistory[rentHistory.length - 1];
 	lastRentDate = new Date(lastRentDate.split("/").reverse().join("-"));
-	if (lastRentDate > currentDate) {
+	let difference = Math.abs(lastRentDate - currentDate);
+	let days = difference / (1000 * 3600 * 24);
+	if (days > 0) {
 		$modalRentHistory.classList.add("show-display-block");
 		for (const property in lastRent) {
 			let $th = document.createElement("th");

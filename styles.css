@@ -803,9 +803,32 @@ a {
 	.lent-book-form input {
 		width: auto;
 	}
+	.main-newbook {
+		height: auto;
+		padding-top: 55px;
+	}
+	.newBookGrid {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.newBookBtn {
+		margin: auto;
+	}
+	body > div:nth-of-type(1) {
+		margin: 10px;
+	}
 }
 @media screen and (max-width: 400px) {
 	.main-nav {
+		flex-direction: column;
+	}
+	.newBookGrid input,
+	.newBookGrid select,
+	.newBookGrid textarea {
+		max-width: 270px;
+	}
+	.newBookBtn {
 		flex-direction: column;
 	}
 }

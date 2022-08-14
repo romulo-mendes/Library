@@ -27,7 +27,7 @@ $newBook.addEventListener("submit", (e) => {
 			author: $bookAuthor.value,
 			genre: $bookGenre.value,
 			rentHistory: [],
-			status: [{ description: "", isActive: true }],
+			status: { description: "", isActive: true },
 			image: SaveUrl,
 			synopsis: $bookSynopsis.value,
 			systemEntryDate: new Date($bookEntry.value).toLocaleDateString("pt-br"),
